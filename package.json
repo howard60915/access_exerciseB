@@ -4,5 +4,13 @@
   "main": "index.js",
   "repository": "git@github.com:howard60915/Access_exerciseA.git",
   "author": "陳璟皓 <howard60915@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.2.6",
+    "graphql": "^15.5.0",
+    "moment-timezone": "^0.5.33",
+    "pg": "^8.5.1"
+  }
 }
