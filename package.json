@@ -6,22 +6,33 @@
   "author": "陳璟皓 <howard60915@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "develop": "NODE_ENV='development' nodemon ./src/app.js --exec babel-node --watch server"
+    "develop": "NODE_ENV='development' nodemon ./src/app.js --exec babel-node --watch server",
+    "eslint": "eslint ./",
+    "test": "jest --coverage --detectOpenHandles --forceExit"
   },
   "dependencies": {
     "@babel/cli": "^7.13.0",
     "@babel/core": "^7.13.8",
     "@babel/node": "^7.13.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.6.3",
     "cors": "^2.8.5",
     "eslint": "^7.20.0",
+    "eslint-config-prettier": "^8.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^24.1.5",
+    "eslint-plugin-prettier": "^3.3.1",
     "express": "^4.17.1",
     "express-rate-limit": "^5.2.6",
     "graphql": "^15.5.0",
+    "jest": "^26.6.3",
     "moment-timezone": "^0.5.33",
     "morgan": "^1.10.0",
-    "pg": "^8.5.1"
+    "pg": "^8.5.1",
+    "prettier": "^2.2.1"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.13.8"
+    "@babel/preset-env": "^7.13.8",
+    "eslint-plugin-jsx-a11y": "^6.4.1"
   }
 }
