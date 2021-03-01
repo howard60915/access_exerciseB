@@ -5,12 +5,23 @@
   "repository": "git@github.com:howard60915/Access_exerciseA.git",
   "author": "陳璟皓 <howard60915@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "develop": "NODE_ENV='development' nodemon ./src/app.js --exec babel-node --watch server"
+  },
   "dependencies": {
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.8",
+    "@babel/node": "^7.13.0",
     "cors": "^2.8.5",
+    "eslint": "^7.20.0",
     "express": "^4.17.1",
     "express-rate-limit": "^5.2.6",
     "graphql": "^15.5.0",
     "moment-timezone": "^0.5.33",
+    "morgan": "^1.10.0",
     "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.13.8"
   }
 }
