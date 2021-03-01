@@ -8,12 +8,13 @@
   "scripts": {
     "develop": "NODE_ENV='development' nodemon ./src/app.js --exec babel-node --watch server",
     "eslint": "eslint ./",
-    "test": "jest --coverage --detectOpenHandles --forceExit"
+    "test": "LIMIT_NUMBER=2 LIMIT_TIME=500 jest --coverage --detectOpenHandles --forceExit"
   },
   "dependencies": {
     "@babel/cli": "^7.13.0",
     "@babel/core": "^7.13.8",
     "@babel/node": "^7.13.0",
+    "axios": "^0.21.1",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.6.3",
     "cors": "^2.8.5",

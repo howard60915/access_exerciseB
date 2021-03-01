@@ -5,10 +5,10 @@ import express from "express";
 import rateLimit from "express-rate-limit";
 
 /** cors allow domain */
-const { ORIGIN } = process.env;
+const { ORIGIN, LIMIT_TIME, LIMIT_NUMBER } = process.env;
 
 /** build server */
-const app = express();
+export const app = express();
 const server = http.createServer(app);
 
 /** Cors config */
@@ -19,9 +19,13 @@ const corsOption = {
 /** request rate limit */
 const limit = {
 	/** 1 minute */
-	windowMs: 1000 * 60,
+	windowMs: LIMIT_TIME || 1000 * 60,
 	/** max request number per windowMs */
-	max: 60,
+	max: LIMIT_NUMBER || 60,
+	/** prevent req.ip is undefined */
+	keyGenerator: (req) => {
+		return req.ip || req.headers["x-forwarded-for"];
+	},
 };
 
 /** setting CORS constraint */
@@ -35,8 +39,7 @@ app.use(rateLimit(limit));
 app.use(morgan(":method :url :status - :response-time ms - FROM :remote-addr"));
 
 app.post("/test", async (req, res) => {
-	console.dir(req.headers, { depth: 10 });
-	res.send("surprise");
+	res.send(`request ip ${req.ip || req.headers["x-forwarded-for"]}`);
 });
 
 export default server;
