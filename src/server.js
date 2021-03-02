@@ -1,14 +1,23 @@
-import http from "http";
+import { GraphQLServer } from "graphql-yoga";
 import morgan from "morgan";
 import cors from "cors";
-import express from "express";
 
 /** cors allow domain */
 const { ORIGIN } = process.env;
 
-/** build server */
-export const app = express();
-const server = http.createServer(app);
+const typeDefs = `
+  type Query {
+    hello(name: String): String!
+  }
+`;
+
+const resolvers = {
+	Query: {
+		hello: (_, { name }) => `Hello ${name || "World"}`,
+	},
+};
+
+const server = new GraphQLServer({ typeDefs, resolvers });
 
 /** Cors config */
 const corsOption = {
@@ -17,8 +26,10 @@ const corsOption = {
 };
 
 /** setting CORS constraint */
-app.use(cors(corsOption));
+server.express.use(cors(corsOption));
 
-app.use(morgan(":method :url :status - :response-time ms - FROM :remote-addr"));
+server.express.use(
+	morgan(":method :url :status - :response-time ms - FROM :remote-addr"),
+);
 
 export default server;

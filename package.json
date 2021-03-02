@@ -1,12 +1,12 @@
 {
-  "name": "Access_exerciseA",
+  "name": "access_exerciseB",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:howard60915/Access_exerciseA.git",
   "author": "陳璟皓 <howard60915@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "develop": "NODE_ENV='development' nodemon ./src/app.js --exec babel-node --watch server",
+    "develop": "NODE_ENV='development' nodemon -e js,graphql ./src/app.js --exec babel-node --watch server",
     "eslint": "eslint ./",
     "test": "LIMIT_NUMBER=2 LIMIT_TIME=500 jest --coverage --detectOpenHandles --forceExit"
   },
@@ -24,7 +24,7 @@
     "eslint-plugin-jest": "^24.1.5",
     "eslint-plugin-prettier": "^3.3.1",
     "express": "^4.17.1",
-    "graphql": "^15.5.0",
+    "graphql-yoga": "^1.18.3",
     "jest": "^26.6.3",
     "moment-timezone": "^0.5.33",
     "morgan": "^1.10.0",

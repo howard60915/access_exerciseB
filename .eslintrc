@@ -15,7 +15,8 @@
 			"error",
 			{
 				"useTabs": true,
-				"tabWidth": 4
+				"tabWidth": 4,
+				"trailingComma": "all"
 			}
 		],
 		"quotes": [

@@ -1,12 +1,17 @@
 import mtz from "moment-timezone";
 import server from "./server";
 
-const PORT = process.env.NODE_PORT || process.env.PORT || 8080;
+const PORT = process.env.NODE_PORT || process.env.PORT || 4000;
+
+const options = {
+	port: PORT,
+	endpoint: "/graphql",
+	playground: "/playground",
+};
 
 mtz.tz.setDefault("Asia/Taipei");
 
-server.listen(PORT, (err) => {
-	if (err) throw err;
+server.start(options, ({ port }) => {
 	// eslint-disable-next-line no-console
-	console.log(`> Ready on http://localhost:${PORT}`);
+	console.log(`> Ready on http://localhost:${port}`);
 });
