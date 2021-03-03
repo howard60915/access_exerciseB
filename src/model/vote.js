@@ -12,14 +12,14 @@ export const voteDefs = `
 		mobile: String
 	}
 
-	type VoteResult {
+	type VotedResult {
 		positive: Int
 		negative: Int
 		invalid: Int
 	}
 
 	type Query {
-		queryVotes: VoteResult
+		queryVotes: VotedResult
 	}
 
 	input AddVoteInput {
@@ -28,8 +28,13 @@ export const voteDefs = `
 		no: Boolean
 	}
 
+	type AddVoteResult {
+		voted: Boolean!
+		error: String
+	}
+
 	type Mutation {
-		addVote(input: AddVoteInput): Boolean!
+		addVote(input: AddVoteInput): AddVoteResult
 	}
 `;
 
@@ -61,14 +66,19 @@ export const resolvers = {
 		addVote: async (source, args) => {
 			const { mobile, yes, no } = args.input;
 			const vote = new Vote({ mobile, yes, no });
+			let error = null;
+			let votedResult = false;
 			try {
 				await vote.save();
-				return true;
-			} catch (error) {
+				votedResult = true;
+			} catch (err) {
 				// eslint-disable-next-line no-console
-				console.error(error.message || error.stack);
-				return false;
+				error = err.message || err.stack;
 			}
+			return {
+				voted: votedResult,
+				error,
+			};
 		},
 	},
 };
